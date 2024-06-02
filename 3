@@ -1,0 +1,44 @@
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+int count_common_numbers(const string& num_str1, const string& num_str2) {
+    vector<int> numbers1;
+    for (char c : num_str1) {
+        if (c >= '0' && c <= '9') {
+            numbers1.push_back(c - '0');
+        }
+    }
+
+    int common_numbers = 0;
+    for (int number : numbers1) {
+        bool found = false;
+        for (char d : num_str2) {
+            if (d >= '0' && d <= '9' && number == d - '0') {
+                found = true;
+                break;
+            }
+        }
+        if (found) {
+            common_numbers++;
+        }
+    }
+    return common_numbers;
+}
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+
+    string num_string1;
+    cout << "Введите первую строку из чисел: ";
+    cin >> num_string1;
+
+    string num_string2;
+    cout << "Введите вторую строку из чисел: ";
+    cin >> num_string2;
+
+    cout << count_common_numbers(num_string1, num_string2);
+
+    return 0;
+}

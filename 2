@@ -1,0 +1,47 @@
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+bool check_digits(const string& num_str1, const string& num_str2) {
+    vector<bool> digits(10);
+    for (char c : num_str1) {
+        if (digits[c - '0']) {
+            return false;
+        }
+        else {
+            digits[c - '0'] = true;
+        }
+    }
+
+    for (char d : num_str2) {
+        if (digits[d - '0']) {
+            continue;
+        }
+        else {
+            return false;
+        }
+    }
+    return true;
+}
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+
+    string num_string1;
+    cout << "Введите первую строку из цифр: ";
+    cin >> num_string1;
+
+    string num_string2;
+    cout << "Введите вторую строку из цифр: ";
+    cin >> num_string2;
+
+    if (check_digits(num_string1, num_string2)) {
+        cout << "В обеих строках используются все десять цифр." << endl;
+    }
+    else {
+        cout << "Хотя бы в одной строке не используются все десять цифр." << endl;
+    }
+
+    return 0;
+}

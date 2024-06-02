@@ -1,0 +1,34 @@
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+bool check_digits(const string& num_str) {
+    vector<char> digits(10);
+    for (char c : num_str) {
+        if (digits[c - '0'] == 1) {
+            return false;
+        }
+        else {
+            digits[c - '0'] = 1;
+        }
+    }
+    return true;
+}
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+
+    string num_string;
+    cout << "Введите строку из цифр: "; // с пробелами не работает(1 2 3 4 1 6 7 8), только (12341678)
+    cin >> num_string;
+
+    if (check_digits(num_string)) {
+        cout << "В строке нет повторяющихся цифр." << endl;
+    }
+    else {
+        cout << "В строке есть повторяющаяся цифра." << endl;
+    }
+
+    return 0;
+}
